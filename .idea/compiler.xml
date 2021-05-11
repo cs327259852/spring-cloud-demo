@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="com.peter.springcloud.merchandise-server-api.main" target="1.8" />
+      <module name="com.peter.springcloud.merchandise-server-api.test" target="1.8" />
+      <module name="com.peter.springcloud.merchandise-server-contracts.main" target="1.8" />
+      <module name="com.peter.springcloud.merchandise-server-contracts.test" target="1.8" />
+      <module name="merchandise-server.main" target="1.8" />
+      <module name="merchandise-server.merchandise-server-api.main" target="1.8" />
+      <module name="merchandise-server.merchandise-server-api.test" target="1.8" />
+      <module name="merchandise-server.test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

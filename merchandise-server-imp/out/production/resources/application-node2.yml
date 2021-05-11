@@ -1,0 +1,7 @@
+server:
+  servlet:
+    context-path: /merchandise-server-imp
+  port: 10003
+
+
+

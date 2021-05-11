@@ -1,0 +1,10 @@
+server:
+  port: 10000
+
+eureka:
+  client:
+    registerWithEureka: false #是否注册到eureka
+    fetchRegistry: false
+    healthcheck: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:10000/eureka

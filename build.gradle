@@ -1,0 +1,57 @@
+apply plugin: 'java'
+
+group 'com.peter.springcloud'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+buildscript {
+    ext {
+        springBootVersion = '2.1.10.RELEASE'
+    }
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    }
+
+    dependencies {
+        //用来打包
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+allprojects {
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    }
+    //指定编码格式
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'io.spring.dependency-management'
+    dependencyManagement {
+        dependencies {
+//            //配置热部署
+//            dependency 'org.springframework:springloaded:1.2.8.RELEASE'
+            //mysql
+            //Notice:with druid need this version,do not upgrade this(refer https://github.com/alibaba/druid/issues/3808)
+            dependency 'mysql:mysql-connector-java:5.1.49'
+
+        }
+        resolutionStrategy {
+            cacheChangingModulesFor 0, 'seconds'
+        }
+    }
+
+    dependencies {
+        compileOnly('org.projectlombok:lombok:1.18.10')
+        compile group: 'junit', name: 'junit', version: '4.12'
+    }
+
+    jar {
+        manifest.attributes provider: 'gradle'
+    }
+}

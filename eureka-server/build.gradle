@@ -1,0 +1,20 @@
+group 'com.peter.springcloud'
+version '1.0-SNAPSHOT'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+sourceCompatibility = 1.8
+
+
+dependencyManagement{
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Greenwich.SR2'
+    }
+}
+
+dependencies{
+    //引入springboot web容器
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    //引入springcloud服务注册发现组件eureka服务端
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-eureka-server'
+}

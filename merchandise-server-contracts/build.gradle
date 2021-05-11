@@ -1,0 +1,14 @@
+version '1.0-SNAPSHOT'
+apply plugin: 'io.spring.dependency-management'
+sourceCompatibility = 1.8
+
+dependencyManagement{
+    // 引入springboot依赖
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Greenwich.SR2'
+    }
+}
+dependencies {
+    //引入springcloud-openfeign依赖
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign'
+}

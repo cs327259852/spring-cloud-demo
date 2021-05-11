@@ -1,0 +1,35 @@
+apply plugin: "org.springframework.boot"
+apply plugin: 'io.spring.dependency-management'
+group 'com.peter.springcloud'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+dependencyManagement{
+    // 引入springboot依赖
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Greenwich.SR2'
+    }
+}
+dependencies {
+    //引入nacos服务注册 注意此处如果没加版本号 无法注册服务
+//    compile 'org.springframework.cloud:spring-cloud-starter-alibaba-nacos-discovery:0.2.1.RELEASE'
+    //引入springcloud-eureka依赖 和nacos只能引入一个
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-eureka-client'
+    //引入springboot健康审查组件acuator
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
+    //引入springcloud熔断器组件hystrix
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-hystrix'
+    compile(project(':merchandise-server-contracts'))
+    //引入springboot web容器
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    //引入springcloud客户端负载均衡组件ribbon
+    compile 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon'
+    //引入http客户端okhttp
+    compile 'com.squareup.okhttp3:okhttp'
+    //引入feign okhttp
+    compile 'io.github.openfeign:feign-okhttp'
+    //引入springboot测试web容器
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    //引入junit测试组件
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: eureka-server
+
+logging:
+  level:
+    root: info
+
+eureka:
+  server:
+    enableSelfPreservation: true
+
+  environment: localhost
+  datacenter: localhost
+  instance:
+    hostname: localhost
+    leaseRenewalIntervalInSeconds: 30 #客户端心跳检测时间 5s
+    leaseExpirationDurationInSeconds: 90 #客户端淘汰心跳超时时间 10s
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
