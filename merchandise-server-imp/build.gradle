@@ -12,14 +12,14 @@ dependencyManagement{
     }
 }
 dependencies {
-    //引入nacos服务注册与发现
+    //引入nacos配置中心
     compile 'org.springframework.cloud:spring-cloud-starter-alibaba-nacos-config:0.2.2.RELEASE'
 //    compile 'org.springframework.cloud:spring-cloud-starter-alibaba-nacos-discovery:0.2.1.RELEASE'
 
     //引入zk服务注册发现依赖
-    //    compile group:'org.springframework.cloud', name: 'spring-cloud-starter-zookeeper-discovery'
+        compile group:'org.springframework.cloud', name: 'spring-cloud-starter-zookeeper-discovery'
     //引入springcloud-eureka客户端依赖
-    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-eureka-client'
+//    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-eureka-client'
     //引入springboot健康审查组件actuator
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
     compile(project(':merchandise-server-contracts'))

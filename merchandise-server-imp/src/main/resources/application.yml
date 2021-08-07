@@ -4,7 +4,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
-  #使用zk服务注册中心配置
+#  使用zk服务注册中心配置
 #  cloud:
 #    zookeeper:
 #      connect-string: 127.0.0.1:2181
@@ -14,44 +14,44 @@ spring:
 
 logging:
   level:
-    root: info
+    root: debug
 feign:
   hystrix:
     enabled: true
 
-eureka:
-  instance:
-    # 是否以IP注册到Eureka Server上，如果false则不是IP而是服务器名称
-    # 但我设置了false，eureka主页仍显示192.168.100.16:client-microservice:8010
-    preferIpAddress: true # 将IP注册到Eureka Server上，而如果不配置就是机器的主机名。默认false。应该始终设置为true。如果基于Docker等容器的部署，容器会生成一个随机的主机名，此时DNS不存在该名，无法解析 - John Carnell
-    leaseRenewalIntervalInSeconds: 30 # 服务续约间隔时间。默认每隔30秒，客户端会向服务端发送心跳。见DiscoveryClient.initScheduledTasks
-    leaseExpirationDurationInSeconds: 90 # 服务失效时间。缺省为90秒服务端接收不到客户端的心跳，则剔除该客户端服务实例。
-    #    prefer-ip-address: true
-    #    Eureka 的元数据
-    metadata-map:
-      zc-data: Current services are merchandise services  # 不会影响客户端
-      zone: ABD               # Eureka可以理解的元数据，可以影响客户端
-
-  client:
-    # eureka服务的位置，如配置错误，则：Cannot execute request on any known server
-    # 详见：com.netflix.discovery.endpoint.EndpointUtils
-    serviceUrl:
-      defaultZone: http://localhost:10000/eureka #应用的主机名称
-    # 是否启用eureka客户端。默认true
-    enabled: true # 本地调试时，若不想启动eureka，可配置false即可，而不需要注释掉@EnableDiscoveryClient这么麻烦
-    # 支持registerWithEureka(John、周立)和register-with-eureka(翟永超)两种写法，eclipse的STS默认使用后者。
-    # 基本所有配置使用横杠或者驼峰都可以，鼠标放在上面，eclipse都可以显示详细注解和默认值（如果有）。
-    registerWithEureka: true
-    fetchRegistry: true
-    # 缓存清单更新时间，默认30秒。见EurekaClientConfigBean，其中DefaultEurekaClientConfig可不看（前者spring实现，后者Netflix实现）
-    registry-fetch-interval-seconds: 30 # 如果想eureka server剔除服务后尽快在client体现，我觉得可缩短此时间。
-    # 周立在Camden SR4（对应eureka-client.jar1.2.6）中说有该属性，但我在SR6（对应1.2.4）和SR4中都找不到；
-    # 又查找了Brixton SR7（对应1.1.7，其实不光eureka-client，整个spring-cloud-netflix都是这个版本），也是没有。
-    # 这是因为该属性IDE确实不能提示，但写法是正确的。作用是修改eureka的健康检查方式（心跳），改为用actuator，详见HealthCheckHandler HealthIndicator。
-    # 周立写的不是太详细，可详见这博客：https://blog.csdn.net/xiao_jun_0820/article/details/77991963
-    # 若配置healthcheck，需引入actuator。
-    healthcheck:
-      enabled: true # 我建议配置为true。心跳机制有个问题，如当客户端的数据库连接出现问题导致不可用时，心跳机制不能反映，但actuator的health可以。
+#eureka:
+#  instance:
+#    # 是否以IP注册到Eureka Server上，如果false则不是IP而是服务器名称
+#    # 但我设置了false，eureka主页仍显示192.168.100.16:client-microservice:8010
+#    preferIpAddress: true # 将IP注册到Eureka Server上，而如果不配置就是机器的主机名。默认false。应该始终设置为true。如果基于Docker等容器的部署，容器会生成一个随机的主机名，此时DNS不存在该名，无法解析 - John Carnell
+#    leaseRenewalIntervalInSeconds: 30 # 服务续约间隔时间。默认每隔30秒，客户端会向服务端发送心跳。见DiscoveryClient.initScheduledTasks
+#    leaseExpirationDurationInSeconds: 90 # 服务失效时间。缺省为90秒服务端接收不到客户端的心跳，则剔除该客户端服务实例。
+#    #    prefer-ip-address: true
+#    #    Eureka 的元数据
+#    metadata-map:
+#      zc-data: Current services are merchandise services  # 不会影响客户端
+#      zone: ABD               # Eureka可以理解的元数据，可以影响客户端
+#
+#  client:
+#    # eureka服务的位置，如配置错误，则：Cannot execute request on any known server
+#    # 详见：com.netflix.discovery.endpoint.EndpointUtils
+#    serviceUrl:
+#      defaultZone: http://localhost:10000/eureka #应用的主机名称
+#    # 是否启用eureka客户端。默认true
+#    enabled: true # 本地调试时，若不想启动eureka，可配置false即可，而不需要注释掉@EnableDiscoveryClient这么麻烦
+#    # 支持registerWithEureka(John、周立)和register-with-eureka(翟永超)两种写法，eclipse的STS默认使用后者。
+#    # 基本所有配置使用横杠或者驼峰都可以，鼠标放在上面，eclipse都可以显示详细注解和默认值（如果有）。
+#    registerWithEureka: true
+#    fetchRegistry: true
+#    # 缓存清单更新时间，默认30秒。见EurekaClientConfigBean，其中DefaultEurekaClientConfig可不看（前者spring实现，后者Netflix实现）
+#    registry-fetch-interval-seconds: 30 # 如果想eureka server剔除服务后尽快在client体现，我觉得可缩短此时间。
+#    # 周立在Camden SR4（对应eureka-client.jar1.2.6）中说有该属性，但我在SR6（对应1.2.4）和SR4中都找不到；
+#    # 又查找了Brixton SR7（对应1.1.7，其实不光eureka-client，整个spring-cloud-netflix都是这个版本），也是没有。
+#    # 这是因为该属性IDE确实不能提示，但写法是正确的。作用是修改eureka的健康检查方式（心跳），改为用actuator，详见HealthCheckHandler HealthIndicator。
+#    # 周立写的不是太详细，可详见这博客：https://blog.csdn.net/xiao_jun_0820/article/details/77991963
+#    # 若配置healthcheck，需引入actuator。
+#    healthcheck:
+#      enabled: true # 我建议配置为true。心跳机制有个问题，如当客户端的数据库连接出现问题导致不可用时，心跳机制不能反映，但actuator的health可以。
 
 common:
   name: ${infr.common.name:}

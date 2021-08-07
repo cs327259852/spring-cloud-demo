@@ -5,7 +5,7 @@ spring:
       config:
         server-addr: 127.0.0.1:8848
         #配置文件后缀，properties文件不需要
-        file-extension: yml
+        file-extension: yaml
         #分组
         group: DEFAULT_GROUP
         #命名空间做环境隔离
